@@ -1,12 +1,14 @@
+type Page = 'home' | 'webinar' | 'ceo' | 'program'
+
 interface Props {
   isOpen: boolean
-  currentPage: 'home' | 'webinar'
+  currentPage: Page
   onClose: () => void
-  onSwitchPage: (page: 'home' | 'webinar') => void
+  onSwitchPage: (page: Page) => void
 }
 
 export default function MobDrawer({ isOpen, currentPage, onClose, onSwitchPage }: Props) {
-  const handleSwitch = (page: 'home' | 'webinar') => {
+  const handleSwitch = (page: Page) => {
     onSwitchPage(page)
     onClose()
   }
@@ -31,16 +33,24 @@ export default function MobDrawer({ isOpen, currentPage, onClose, onSwitchPage }
             className={currentPage === 'home' ? 'on' : ''}
             onClick={(e) => { e.preventDefault(); handleSwitch('home') }}
           >Home</a>
-          <a href="#">CEO Remarks</a>
-          <a href="#">Program &amp; Speakers</a>
-          <a href="#">Events</a>
-          <a href="#">Register</a>
           <a
             href="#"
+            data-page="ceo"
+            className={currentPage === 'ceo' ? 'on' : ''}
+            onClick={(e) => { e.preventDefault(); handleSwitch('ceo') }}
+          >CEO Remarks</a>
+          <a
+            href="#"
+            data-page="program"
+            className={currentPage === 'program' ? 'on' : ''}
+            onClick={(e) => { e.preventDefault(); handleSwitch('program') }}
+          >Program &amp; Speakers</a>
+          <a
+            href="#"
+            data-page="vod"
             className={currentPage === 'webinar' ? 'on' : ''}
-            data-live=""
             onClick={(e) => { e.preventDefault(); handleSwitch('webinar') }}
-          >Webinar</a>
+          >VOD</a>
           <a href="#">FAQ</a>
           <div className="mob-drawer-divider" />
           <div className="mob-drawer-label">Forum Archive</div>

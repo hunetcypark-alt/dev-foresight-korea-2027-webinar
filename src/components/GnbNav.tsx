@@ -1,8 +1,10 @@
 import { useState } from 'react'
 
+type Page = 'home' | 'webinar' | 'ceo' | 'program'
+
 interface Props {
-  currentPage: 'home' | 'webinar'
-  onSwitchPage: (page: 'home' | 'webinar') => void
+  currentPage: Page
+  onSwitchPage: (page: Page) => void
   onOpenDrawer: () => void
 }
 
@@ -35,17 +37,28 @@ export default function GnbNav({ currentPage, onSwitchPage, onOpenDrawer }: Prop
           onClick={(e) => { e.preventDefault(); onSwitchPage('home') }}
           style={{ fontSize: 16 }}
         >Home</a>
-        <a href="#" style={{ fontSize: 16 }}>CEO Remarks</a>
-        <a href="#" style={{ fontSize: 16 }}>Program &amp; Speakers</a>
-        <a href="#" style={{ fontSize: 16 }}>Events</a>
-        <a href="#" style={{ fontSize: 16 }}>Register</a>
         <a
           href="#"
+          data-page="ceo"
+          className={currentPage === 'ceo' ? 'on' : ''}
+          onClick={(e) => { e.preventDefault(); onSwitchPage('ceo') }}
+          style={{ fontSize: 16 }}
+        >CEO Remarks</a>
+        <a
+          href="#"
+          data-page="program"
+          className={currentPage === 'program' ? 'on' : ''}
+          onClick={(e) => { e.preventDefault(); onSwitchPage('program') }}
+          style={{ fontSize: 16 }}
+        >Program &amp; Speakers</a>
+        <a
+          href="#"
+          data-page="vod"
+          id="gnb-vod"
           className={currentPage === 'webinar' ? 'on' : ''}
-          data-live=""
           onClick={(e) => { e.preventDefault(); onSwitchPage('webinar') }}
           style={{ fontSize: 16 }}
-        >Webinar</a>
+        >VOD</a>
         <a href="#" style={{ fontSize: 16 }}>FAQ</a>
       </div>
 

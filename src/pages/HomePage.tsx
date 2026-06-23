@@ -13,7 +13,7 @@ import ArchiveSection from '../sections/ArchiveSection'
 import Footer from '../components/Footer'
 
 interface Props {
-  onSwitchPage: (page: 'home' | 'webinar') => void
+  onSwitchPage: (page: 'home' | 'webinar' | 'ceo' | 'program') => void
 }
 
 export default function HomePage({ onSwitchPage }: Props) {

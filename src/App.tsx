@@ -6,6 +6,8 @@ import GnbNav from './components/GnbNav'
 import MobDrawer from './components/MobDrawer'
 import HomePage from './pages/HomePage'
 import WebinarPage from './pages/WebinarPage'
+import CeoPage from './pages/CeoPage'
+import ProgramPage from './pages/ProgramPage'
 
 function useScrollReveal() {
   useEffect(() => {
@@ -50,7 +52,7 @@ function useScrollReveal() {
 }
 
 export default function App() {
-  const [page, setPage] = useState<'home' | 'webinar'>('home')
+  const [page, setPage] = useState<'home' | 'webinar' | 'ceo' | 'program'>('home')
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   useScrollReveal()
@@ -70,11 +72,10 @@ export default function App() {
         onSwitchPage={setPage}
       />
 
-      {page === 'home' ? (
-        <HomePage onSwitchPage={setPage} />
-      ) : (
-        <WebinarPage />
-      )}
+      {page === 'home' && <HomePage onSwitchPage={setPage} />}
+      {page === 'ceo' && <CeoPage />}
+      {page === 'program' && <ProgramPage />}
+      {page === 'webinar' && <WebinarPage />}
     </>
   )
 }
