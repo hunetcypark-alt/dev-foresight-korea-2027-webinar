@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 import type { TrackInfo, Session } from '../_data/tracks'
 
 interface Props { tracks: TrackInfo[] }
@@ -48,9 +48,24 @@ function SessionItem({ s }: { s: Session }) {
 
 export default function StreamSection({ tracks }: Props) {
   const [activeKey, setActiveKey] = useState('a')
+  const layoutRef = useRef<HTMLDivElement>(null)
+  const tabsRef = useRef<HTMLDivElement>(null)
 
   const info = tracks.find((t) => t.key === activeKey) ?? tracks[1]
   const liveSession = info.sessions.find((s) => s.live) ?? info.sessions[0]
+
+  useLayoutEffect(() => {
+    const sync = () => {
+      if (!layoutRef.current || !tabsRef.current) return
+      const offset = tabsRef.current.getBoundingClientRect().top - layoutRef.current.getBoundingClientRect().top
+      layoutRef.current.style.setProperty('--wb-lhdr-h', `${Math.max(0, offset)}px`)
+    }
+    sync()
+    const ro = new ResizeObserver(sync)
+    if (layoutRef.current) ro.observe(layoutRef.current)
+    if (tabsRef.current) ro.observe(tabsRef.current)
+    return () => ro.disconnect()
+  }, [])
 
   const switchTrack = (key: string) => {
     setActiveKey(key)
@@ -66,7 +81,7 @@ export default function StreamSection({ tracks }: Props) {
       <div className="wb-stream-ai"></div>
       <div className="wb-stream">
         <div className="wb-content">
-          <div className="wb-layout">
+          <div className="wb-layout" ref={layoutRef}>
 
             <div className="wb-left">
               <div className="wb-lhdr">
@@ -75,7 +90,7 @@ export default function StreamSection({ tracks }: Props) {
                 </div>
                 <div className="wb-tabs-col">
                   <p className="wb-hint">아래 탭을 선택하고 실시간 스트리밍을 시청하세요.</p>
-                  <div className="wb-tabs" role="tablist">
+                  <div className="wb-tabs" role="tablist" ref={tabsRef}>
                     {TABS.map((tab) => (
                       <button
                         key={tab.key}

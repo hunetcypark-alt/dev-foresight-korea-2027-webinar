@@ -22,8 +22,12 @@ export default function AuthSection({ meta, onAuth }: Props) {
           <div className="wb-auth-bg-dim"></div>
         </div>
         <div className="wb-auth-body">
-          <p className="wb-auth-title">{meta.authTitle}</p>
-          <p className="wb-auth-sub">{meta.authSub}</p>
+          <p className="wb-auth-title">
+            이곳은 사전등록자를 위한{' '}<br className="tab-mo-br" />실시간 LIVE 공간입니다.
+          </p>
+          <p className="wb-auth-sub">
+            사전 등록 시 기재하신 참석자 분의{' '}<br className="tab-mo-br" />'성함'과 '휴대폰번호'를 입력해 주세요.
+          </p>
           <div className="wb-auth-card">
             <input
               className="wb-input"
