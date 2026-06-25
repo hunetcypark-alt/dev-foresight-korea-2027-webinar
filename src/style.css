@@ -670,7 +670,7 @@ section.s-intro{border-top:none;min-height:1080px;position:relative;overflow:hid
 .s-intro{padding:100px 0}
 .intro-bg{
   position:absolute;top:10%;right:0;bottom:0;left:0;z-index:0;
-  background:url('./assets/img/FORESIGHT_KOREA_2026_00620.jpg') 30% 50%/cover no-repeat;
+  background:url('./img/FORESIGHT_KOREA_2026_00620.jpg') 30% 50%/cover no-repeat;
   opacity:1;
   filter:saturate(.95) brightness(.85);
   -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 28%);
