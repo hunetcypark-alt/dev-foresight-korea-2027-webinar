@@ -5,6 +5,7 @@ import { insights } from '../_data/insights'
 import { archiveItems } from '../_data/archive'
 
 import HeroSection from '../sections/HeroSection'
+import AboutSection from '../sections/AboutSection'
 import ConceptSection from '../sections/ConceptSection'
 import StatsSection from '../sections/StatsSection'
 import SpeakersSection from '../sections/SpeakersSection'
@@ -20,6 +21,7 @@ export default function HomePage({ onSwitchPage }: Props) {
   return (
     <div id="page-home" className="page active">
       <HeroSection meta={meta} onLiveClick={() => onSwitchPage('webinar')} />
+      <AboutSection />
       <ConceptSection />
       <StatsSection stats={stats} />
       <div className="insight-archive-wrap">
